@@ -50,7 +50,6 @@ public class UserController {
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public ResponseEntity<UserDetails> updateUser(@RequestBody UserDetails user){
-		
 		udao.upUser(user);
 		user.setCode("400");
 		user.setMsg("Detials updated succesfully");

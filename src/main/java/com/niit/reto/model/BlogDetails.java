@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BlogDetails extends Details{
 	
+	
 	@Id
 	@GeneratedValue(
 			strategy=GenerationType.SEQUENCE,
