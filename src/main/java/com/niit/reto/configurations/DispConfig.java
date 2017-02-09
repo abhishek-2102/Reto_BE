@@ -3,6 +3,7 @@ package com.niit.reto.configurations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -23,4 +24,11 @@ public class DispConfig extends WebMvcConfigurerAdapter{
 		vr.setSuffix(".jsp");
 		return vr;
 	}
+	
+	@Bean(name="multipartResolver")
+	public CommonsMultipartResolver reslover(){
+		CommonsMultipartResolver res=new CommonsMultipartResolver();
+		return res;
+	}
+	
 }

@@ -73,6 +73,7 @@ public class JobAppliedController {
 	@RequestMapping(value="/updatestatus",method=RequestMethod.POST)
 	public ResponseEntity<JobAppliedDetails> updateStatus(@RequestBody JobAppliedDetails job){
 		JobAppliedDetails apply=jadao.updateStatus(job);
+		System.out.println("Job Applied");
 		apply.setCode("400");
 		apply.setMsg("Status chanded");
 		return new ResponseEntity<JobAppliedDetails>(apply,HttpStatus.OK);

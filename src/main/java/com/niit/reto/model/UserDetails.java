@@ -47,6 +47,17 @@ public class UserDetails extends Details {
 	@Column
 	private Date dob;
 	
+	@Column
+	private boolean img;
+	
+	public boolean isImg() {
+		return img;
+	}
+
+	public void setImg(boolean img) {
+		this.img = img;
+	}
+
 	public Date getDob() {
 		return dob;
 	}

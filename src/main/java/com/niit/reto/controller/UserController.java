@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.reto.dao.UserDao;
+import com.niit.reto.model.Imageupload;
 import com.niit.reto.model.UserDetails;
 
 @RestController
@@ -26,6 +29,7 @@ public class UserController {
 	public ResponseEntity<UserDetails> saveUserDetails(@RequestBody UserDetails user){
 		
 		user.setStatus("NEW");
+		user.setImg(false);
 		udao.saveUser(user);
 		user.setCode("200");
 		user.setMsg("Registered Succesfully");
@@ -72,6 +76,15 @@ public class UserController {
 		return new ResponseEntity<UserDetails>(u,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/uploadimage",method=RequestMethod.POST)
+	public ResponseEntity<String> imageupload(@RequestPart MultipartFile photo,HttpSession session){
+		UserDetails user=(UserDetails)session.getAttribute("currentUser");
+		user.setImg(true);
+		udao.upUser(user);
+		Imageupload img=new Imageupload();
+		img.upload(user.getId(), photo);
+		return new ResponseEntity<String>("Completed",HttpStatus.OK);
+	}
 	
 	
 }
